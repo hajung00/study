@@ -1,25 +1,26 @@
 const express = require("express");
 const app = express();
 const port = 5000;
+const bodyParser = require('body-parser')
+const { User } = require("./models/User");
+const config = require("./config/key")
 
-const {User}= require("./medels/User");
+app.use(bodyParser.urlencoded({extended:true}))
 
-
-app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://hajung:gkwjd719@cluster0.mzcwkxu.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(config.mongoURI)
   .then(() => console.log("MongoDb Connected..."))
   .catch((err) => console.log(err));
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World! dkdkdkdkkd')
 })
 
-app.post("/api/users/register", (req, res) => {
+app.post("/register", (req, res) => {
     console.log(req.body)
 
 const user = new User(req.body)
