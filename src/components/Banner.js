@@ -74,17 +74,19 @@ export default function Banner() {
         }}
       >
         <div className='banner_contens'>
-          <h1>{movie.title || movie.name || movie.original_name}</h1>
+          <h1 className='banner_title'>
+            {movie.title || movie.name || movie.original_name}
+          </h1>
           <div className='banner_buttons'>
             <button
-              className='banner_button_play'
+              className='banner_button play'
               onClick={() => {
                 setIsClicked(true);
               }}
             >
               Play
             </button>
-            <button className='banner_button_info'>More Infomation</button>
+            <button className='banner_button info'>More Infomation</button>
           </div>
           <h1 className='banner_description'>
             {truncate(movie.overview, 100)}
