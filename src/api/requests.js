@@ -7,7 +7,7 @@ const requests = {
   fetchComedyMovies: '/discover/movie?with_genres=35',
   fetchHorrorMovies: '/discover/movie?with_genres=27',
   fetchRomanceMovies: '/discover/movie?with_genres=10749',
-  fetchDocumenttaries: '/discover/movie?with_genres=99',
+  fetchDocumentaries: '/discover/movie?with_genres=99',
 };
 
 export default requests;
