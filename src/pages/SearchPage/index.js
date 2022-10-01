@@ -2,6 +2,7 @@ import axios from '../../api/axios';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './SearchPage.css';
+import { useDebounce } from '../../hooks/useDebounce';
 
 export default function SearchPage() {
   const [searchResults, setSearchResults] = useState([]);
@@ -11,7 +12,7 @@ export default function SearchPage() {
     return new URLSearchParams(useLocation().search);
   };
   let query = useQuery();
-  const searchTerm = query.get('q');
+  const searchTerm = useDebounce(query.get('q'), 500);
   // console.log(searchTerm);
 
   useEffect(() => {
