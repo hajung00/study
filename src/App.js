@@ -11,20 +11,6 @@ import DiaryList from './DiaryList';
 //     emotion: 1,
 //     created_data: new Date().getTime(),
 //   },
-//   {
-//     id: 2,
-//     author: '아무개',
-//     content: '아무개입니다.',
-//     emotion: 3,
-//     created_data: new Date().getTime(),
-//   },
-//   {
-//     id: 3,
-//     author: '김하정',
-//     content: '김하정입니다.',
-//     emotion: 5,
-//     created_data: new Date().getTime(),
-//   },
 // ];
 
 function App() {
@@ -46,15 +32,23 @@ function App() {
     setData([newItem, ...data]);
   };
 
-  const onDelete = (targetId) => {
+  const onRemove = (targetId) => {
     const newDiaryList = data.filter((item) => item.id !== targetId);
     setData(newDiaryList);
+  };
+
+  const onEdit = (targetId, newContent) => {
+    setData(
+      data.map((item) =>
+        item.id === targetId ? { ...item, content: newContent } : item
+      )
+    );
   };
 
   return (
     <div>
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diarylist={data} onDelete={onDelete} />
+      <DiaryList diarylist={data} onRemove={onRemove} onEdit={onEdit} />
     </div>
   );
 }
