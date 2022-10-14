@@ -1,14 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { DiaryDispatchContext } from './App';
 
-function DiaryItem({
-  id,
-  author,
-  content,
-  emotion,
-  created_data,
-  onRemove,
-  onEdit,
-}) {
+function DiaryItem({ id, author, content, emotion, created_data }) {
+  const { onRemove, onEdit } = useContext(DiaryDispatchContext);
+
   useEffect(() => {
     console.log(`${id}번째 랜더`); //???????
   });
