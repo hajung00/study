@@ -1,7 +1,11 @@
-import React from 'react';
+import DiaryEditor from '../coponents/DiaryEditor';
 
 function New() {
-  return <div>New</div>;
+  return (
+    <div>
+      <DiaryEditor />
+    </div>
+  );
 }
 
 export default New;
