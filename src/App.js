@@ -71,19 +71,19 @@ const dummyDate = [
 function App() {
   const [data, dispatch] = useReducer(reducer, dummyDate);
 
-  const dataId = useRef(0);
+  const dataId = useRef(6);
 
   const onCreate = (date, content, emotion) => {
     dispatch({
       type: 'CREATE',
       data: {
-        id: dataId,
+        id: dataId.current,
         date: new Date(date).getTime(),
         content,
         emotion,
       },
     });
-    dataId.current++;
+    dataId.current += 1;
   };
   const onRemove = (targetId) => {
     dispatch({ type: 'REMOVE', targetId });
