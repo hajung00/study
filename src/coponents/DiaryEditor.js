@@ -1,4 +1,10 @@
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, {
+  useRef,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Mybutton from './Mybutton';
 import Myheader from './Myheader';
@@ -13,9 +19,9 @@ function DiaryEditor({ isEdit, originData }) {
   const [date, setDate] = useState(getStringDate(new Date()));
 
   const [emotion, setEmotion] = useState(3);
-  const handleClickEmote = (emotion) => {
+  const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
 
   const [content, setContent] = useState('');
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
