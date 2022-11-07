@@ -1,0 +1,75 @@
+1. calculator
+    # 순서도 그리기
+        1. 숫자를 입력한다.
+        2. 연산자를 입력한다.
+        3. 숫자를 입력한다.
+        4. = 버튼을 누른다.
+        5. 연산자에 맞는 계산을 한다.
+        6. 결과를 표시한다.
+
+
+
+* 고차함수( high-order-function )
+- 함수가 함수를 return
+- 함수간의 중복을 제거하기 위해서
+
+ex)
+const onClickNumber = (number)=>{
+    if(operator){
+         numTwo += number;
+    }else{
+        numOwn += number;
+    }
+    $result.value += number;
+}
+
+document.querySelector('#num-0').addEventListener('click',onClickNumber('0'));
+❗문제점: addEventListener('이벤트 함수', 함수)인데 함수자리에 undifind이 들어감
+// 함수 호출 시, 그 함수의 return값이 들어감.
+
+💡해결
+- const onClickNumber = (number)=> ()=> {
+        if(operator){
+                numTwo += number;
+            }else{
+                numOwn += number;
+            }
+            $result.value += number;
+            } 
+
+* if 중첩 제거하는 방법
+1. if문 다음에 나오는 공통된 절차를 각 분기점 내부에 넣는다.
+2. 분기점에서 짧은 절차부터 실행하게 if문을 작성한다.
+3. 짧은 절차가 끝나면 return(함수 내부의 경우)이나 break( for문 내부의 경우 )로 중단한다.
+4. else를 제거한다.(이때 중첩 하나가 제거된다.)
+5. 다음 중첩된 분기점이 나오면 1~4의 과정을 반복한다.
+
+ex)
+const onClickNumber = (event) => {
+    if(operator){ // 첫번째 숫자를 입력받음.
+        if(!numTwo){
+        $result.value ='';
+        }
+        numTwo += event.target.textContent;
+    }else{ // 첫번째 숫자를 입력받지 않음.
+    numOne += event.target.textContent;
+    }
+    $result.value += event.target.textContent;
+}
+
+💡중첩 제거
+const onClickNumber = (event) => {
+    if(!operator){ // 첫번째 숫자를 입력받지 않음.
+        numOne += event.target.textContent;
+        $result.value += event.target.textContent;
+        return;
+    }
+    if(!numTwo){
+    $result.value ='';
+    }
+    numTwo += event.target.textContent;
+    $result.value += event.target.textContent;
+    
+}
+
+

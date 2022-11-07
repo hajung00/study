@@ -1,4 +1,4 @@
-## Chapter3.
+## Chapter3
 
 ### 1. word-relay
 
