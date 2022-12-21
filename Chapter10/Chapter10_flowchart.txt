@@ -1,0 +1,39 @@
+1. tictactoe 순서도 그리기
+    # 순서도 그리기
+        1. 메뉴 입력 버튼 클릭
+        2. 1번(모험)일 경우, 메뉴를 전투 메뉴로 전환한다.
+        3. 2번(휴식)일 경우, 주인공의 체력을 모두 회복한다.
+        4. 3번(종료)일 경우, 화면에 종료 안내 메시지를 표시한다.
+        5. 순서2일 경우 전투 메뉴 입력버튼 클릭
+        6. 1번(공격)일 경우, 내 체력을 적 몬스터의 공격력만큼 감소
+        7. 2번(회복)일 경우, 체력을 20 회복
+        8. 내 체력을 적 몬스터의 공격력만큼 감소
+        9. 3번(도망)일 경우, 전투 메뉴에서 빠져나와 일반 메뉴로 전환
+         
+* 깊은 복사
+    const a = [];
+    const b = 'hello';
+    const c = {};
+    const arr = [a,b,c]
+    1. const arr1 = arr
+    - 복사아닌 참조!
+    2. const arr1 = [...arr] or slice
+    - 얕은 복사: 겉은 복사 내부는 참조
+    3. const arr1 = JSON.parse(JSON.stringfy(arr))
+    - 깊은 복사: 모든 참조 관계가 끊기고 복사
+
+* this
+    - this는 window다!
+    const b = {
+        name:'하정',
+        sayName(){
+            console.log(this === b);
+        }
+    };
+    b.sayName(); // true
+
+    const bg = b.sayName;
+    bg(); // false
+
+    - 객체.메서드를 해야 this가 객체를 가르킴
+    - bg() 실행했을때의 this는 window
