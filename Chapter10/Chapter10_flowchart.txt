@@ -1,4 +1,4 @@
-1. tictactoe 순서도 그리기
+1. text-rpg 순서도 그리기
     # 순서도 그리기
         1. 메뉴 입력 버튼 클릭
         2. 1번(모험)일 경우, 메뉴를 전투 메뉴로 전환한다.
@@ -24,6 +24,12 @@
 
 * this
     - this는 window다!
+    - 객체를 통해 this를 사용할 때는 this가 해당 객체를 가리키게 된다.
+    - 객체.메서드를 해야 this가 객체를 가르킴
+    - Function은 자기만의 this를 가짐 
+    - 화살표 함수는 밖의 this와 안의 this를 동일시 해줌
+    - bg() 실행했을때의 this는 window
+
     const b = {
         name:'하정',
         sayName(){
@@ -34,6 +40,27 @@
 
     const bg = b.sayName;
     bg(); // false
+    
+* class
+- 객체를 생성하는 템플릿 문법
+- class로 클래스 선언, constructor 메서드 안에 기존 코드 작성
+- new를 붙여 호출하면 constructor실행되고 객체가 반환
+- this는 생성된 객체 자신을 가르킴
 
-    - 객체.메서드를 해야 this가 객체를 가르킴
-    - bg() 실행했을때의 this는 window
+ex)  class Unit {
+        constructor(game, name) {
+          this.game = game;
+          this.name = name;
+        }
+    }
+    const unit = new Unit(game, 'hajung')
+
+* class 상속
+- 클래스끼리 extends로 상속
+class Monster extends Unit {
+   attack(target) {
+          target.hp -= this.att;
+        }
+}
+
+const monster = new Monster()
