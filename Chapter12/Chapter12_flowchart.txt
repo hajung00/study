@@ -14,7 +14,18 @@
             깃발이 아닐 경우 => 물음표로 전환
      
 * 논리 연산자
-- && : 앞에가 true면 뒤에 실행
-- || : 앞에가 false면 뒤에 실행
-- ?? : 앞에가 null또는 undifind면 뒤에 실행
+ - && : 앞에가 true면 뒤에 실행
+ - || : 앞에가 false면 뒤에 실행
+ - ?? : 앞에가 null또는 undifind면 뒤에 실행
+ 
+* 재귀 
+ - Mawimum call stack size exceeded 일어 놨을 경우 해결방법
+ 
+ex) 
+ ❗문제점 1❗: mine-sweeper 에서 openAround가 계속 호출되어 호출 스택에 계속 쌓여 공간이 부족하게됨.
+ 💡해결 방법💡: 백그라운드와 테스크큐는 비어있으니까 거기 공간 활용!
+ -> setTimeout으로 감싸 비동기로 실행되도록 
+
+ ❗문제점 2❗: 이미 열렸던 칸에서 또 openAround 호출
+ 💡해결 방법💡: 이미 열린 칸이면 openAround 실행되지 않도록!
  
