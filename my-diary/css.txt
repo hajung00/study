@@ -77,3 +77,11 @@ ex) div{
 - float: 특정한 컨테이너 좌우측을 감싸는 형태로 강제 배치할 때 사용
 - clear: float가 적용된 요소, 혹은 영향을 받고 있는 요소들에게 추가로 줄 수 있는 속성
 - 반응형 웹에 적합하지 않기 때문에 거의 사용하지 않음
+
+2. Flex
+- display가 적용된 요소: flex-container, 자식 요소: flex-item
+속성1) flex-direction : row | column (정렬의 기준이 되는 방향)
+속성2) justify-content : 중심축 방향 정렬(중심축을 기준으로 item 정렬)
+	속성값: flex-start, flex-end, center, space-between, space-around, space-between, space-evenly
+속성3) align-items: 중심축 반대 방향 정렬
+	속성값: stretch, flex-start, flex-end
