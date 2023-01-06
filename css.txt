@@ -120,3 +120,86 @@ ex) div{
 속성1) order: item의 순서를 지정
 속성2) flex-basic: item의 기본 사이즈를 지정
 속성3) flex-shrink ..등등
+
+
+📒(2022-01-06)📒
+* 상속
+상속되는 속성: color, font-family, font-size
+상속되지 않는 속성: padding, margin, border
+
+* 웹폰트
+- 사용자가 로컬에 폰트를 직접 설치하지 않아도 특정 서버에 위치한 폰트를 다운받아 웹페이지에 표시
+- 웹폰트 적용 방법
+1. 폰트 파일을 직접 다운로드 받아서 적용하는 방법
+    - @font-face 이용
+2. 위부 서비스에서 제공하는 링크를 이용하는 방법
+    - @import 혹은 <link>이용
+
+* font
+- text-align: 블록요소나 표안에서 텍스트의 가로 정렬 방식 지정
+- vertical-align: 인라인 요소나 표안에서 텍스트의 세로 정렬 방식 지정
+- word-break: 텍스트가 콘텐츠 박스 영역 밖으로 넘쳤을 때, 어떻게 줄을 바꿀지 설정
+	1) keep-all: 어절을 기준으로 줄바꿈.
+	2) break-all: 음절을 기준으로 줄바꿈.
+- overflow-wrap: 단어가 콘텐츠 박스 영역 밖으로 넘쳤을때, 줄바꿈 여부 설정
+- text-overflow: 줄바꿈을 하지 않을 때, 요소 밖으로 넘치는 text를 어떻게 표기할 것인지 설정
+	선행조건
+	1. white-space:nowrap; 
+	2. overflow:hidden
+
+* 단위
+1. 절대단위
+ px: 화면을 구성하는 가장 기본이 되는 단위
+2. 상대단위
+ %: 부모 요소의 해당 속성 값에 비례하여 지정한 비율의 값을 적용
+ em: 스타일 지정 요소의 font-size 속성 값에 비례하여 값을 결정
+ rem: 최상위 html요소의 font-size 속성 값에 비례하여 값을 결정한다.
+ vw/vh: 요소의 규격을 viewport의 너비값과 높이 값에 비례하여 결정
+
+ * position
+- HTML요소가 배치되는 방식을 결정하는 속성
+- position의 속성 값에 따라 top/ left/ bottom/ right적용 달라짐
+- top/ left/ bottom/ right: 해당 방향 기준으로 요소의 좌표값을 변경
+
+*position 속성에 따른  top/ left/ bottom/ right
+1) static: top/ left/ bottom/ right 적용 불가
+2) relative: 원래 있던 자리를 기준으로 요소의 위치 조정 top/ left/ bottom/ right 적용 가능
+3) absolute: 절대 좌표를 기준으로 요소의 위치 조정  top/ left/ bottom/ right 적용 가능
+
+** relative와 absolute의 관계
+ex) index.html
+<div class='container'>
+  <div class='wrapper'>
+    <div class='content'></div>
+  </div>
+</div>;
+
+index.css
+.container{
+	position: relative;
+}
+.wrapper{
+	position: relative;
+}
+.content{	
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+=> content의 부모요소에 position이 기본값(static)일 경우, content는 viewport를 기준으로 top과 left를 조정
+=> content의 부모요소에 position이 relative일 경우, content의 부모요소를 기준으로 top과 left를 조정
+
+* transform
+속성값1) translate: 위치이동
+속성값2) scale: 크기 조정
+속성값3) skew: x,y 축 만큼 각도 이동
+속성값4) rotate: 각도만큼 회전
+
+
+* 애니메이션
+- 여러 이미지를 연결해서 자연스럽게 움직이는 것처럼 보이게 만드는 기법
+
+방법1. transition 속성 활요
+- transition: property, duration, timing-function, delay
+- css속성을 이용한 전후 사이에 애니메이션을 추가해 부드럽게 만들어 줄 수 있음
+- 특정한 이벤트를 기점으로 작동(hover)
