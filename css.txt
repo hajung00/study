@@ -199,7 +199,28 @@ index.css
 * 애니메이션
 - 여러 이미지를 연결해서 자연스럽게 움직이는 것처럼 보이게 만드는 기법
 
-방법1. transition 속성 활요
+방법1. transition 속성 활
 - transition: property, duration, timing-function, delay
 - css속성을 이용한 전후 사이에 애니메이션을 추가해 부드럽게 만들어 줄 수 있음
 - 특정한 이벤트를 기점으로 작동(hover)
+
+방법2. animation속성과 keyframes 활용
+- transition: name, duration, timing-function, delay, iteration-count, direction
+- 시작하기 위한 이벤트가 필요 없음
+- 시작, 정지, 반복까지 제어 가능
+- @keyframes로 애니메이션 정의, 불러와서 제어
+* @keyframes: css 애니메이션의 시작, 중간, 끝 등의 중간상태를 정의
+ex) 
+@keyframes 애니메이션 이름{
+	// 애니메이션 시작 시점의 css
+	from{
+		left: 0;
+	}
+	// 애니메이션 종료 시점의 css
+	to{
+		left:200px;
+	}
+}
+
+* grid
+-  row, column 양방향 선택 가능 (flex: row, column 1방향 선택)

@@ -8,6 +8,8 @@ body {
   padding: 0;
 }
 
+/* 
+ flex 
 .itemWrap {
   display: flex;
   flex-direction: row;
@@ -23,6 +25,21 @@ body {
   overflow: hidden;
   border-radius: 10px;
   margin-bottom: 15px;
+} */
+
+/* grid */
+.itemWrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 7px;
+}
+
+.item {
+  aspect-ratio: 6 / 5;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .imgBox {
