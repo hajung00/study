@@ -204,6 +204,8 @@ index.css
 - css속성을 이용한 전후 사이에 애니메이션을 추가해 부드럽게 만들어 줄 수 있음
 - 특정한 이벤트를 기점으로 작동(hover)
 
+📒(2022-01-07)📒
+
 방법2. animation속성과 keyframes 활용
 - transition: name, duration, timing-function, delay, iteration-count, direction
 - 시작하기 위한 이벤트가 필요 없음
@@ -224,3 +226,22 @@ ex)
 
 * grid
 -  row, column 양방향 선택 가능 (flex: row, column 1방향 선택)
+
+* flex와 grid 차이점
+1. flex
+- 비교적 작은 단위의 레이아웃 구성에 적합
+- 작업 유동성이 높기 때문에, 디자인이나 기획이 확실하게 잡히지 않아 변경 가능성이 있는 경우
+2. grid
+- 큰 규모의 레이아웃 구성에 적합
+- 레이아웃 구조가 확실하게 잡혀있는 경우, 효율적으로 반응형 디자인을 구현할 수 있음
+
+* 반응형 웹
+-* 미디어 쿼리: viewport 너비에 따라 웹 사이트의 스타일 시트를 수정할 수 있음.
+ex)
+// 화면이 600px 이하일 경우 적용되는 스타일 지정
+@media screen and (max-width: 600px){
+	// 요소와 요소에 지정할 스타일 작성
+}
+
+- * breakpoint
+- 반응형 웹사이트 작업의 기준이 되는 중단점
