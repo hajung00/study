@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStringMode: true,
+  reactStringMode: false,
   images: {
     domains: ['lecture-1.vercel.app'],
   },
