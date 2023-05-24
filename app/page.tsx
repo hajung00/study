@@ -3,8 +3,14 @@ import MapSection from '../home/MapSection'
 import styles from '../styles/header.module.scss'
 import {AiOutlineShareAlt, VscFeedback} from 'react-icons/all'
 import Link from 'next/link'
+import { NextPage } from 'next'
+import {use} from 'react'
+import { Store } from '@/types/store'
 
-export default function Home() {
+const Home = () => {
+  const stores:Store[] = use(getMapApi());
+  console.log(stores[0].nid)
+  
   return (
     <> 
     <Header
@@ -23,4 +29,11 @@ export default function Home() {
       <MapSection/>
     </main></>
   )
+}
+
+export default Home;
+
+export async function getMapApi(){
+  const stores = (await import('../public/store.json')).default
+  return stores
 }
