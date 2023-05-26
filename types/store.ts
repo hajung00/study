@@ -1,9 +1,10 @@
 type Lat = number;
 type Lng = number;
-export type Coordinates = [Lat, Lng];
+export type Coordinates = [Lat, Lng]; //지도 좌표
 
-export type Menu = { name: string; price: string };
+export type Menu = { name: string; price: string }; //메뉴
 
+//매장 정보
 export type Store = {
     nid: number;
     name: string;

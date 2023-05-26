@@ -20,7 +20,7 @@ const  Map = ({
 }:Props) => {
     const mapRef = useRef<NaverMap | null>(null);
 
-
+    //지도 설정
     const initializeMap = () => {
         const mapOptions = {
           center: new window.naver.maps.LatLng(...initialCenter),
@@ -33,7 +33,6 @@ const  Map = ({
           },
         };
     
-        /** https://navermaps.github.io/maps.js.ncp/docs/tutorial-2-Getting-Started.html */
         const map = new window.naver.maps.Map(mapId, mapOptions);
         mapRef.current = map;
     
@@ -42,7 +41,7 @@ const  Map = ({
         }
       };
 
-
+    //지도가 이미 있는 경우 없애줌
     useEffect(() => {
         return () => {
           mapRef.current?.destroy();
@@ -57,6 +56,7 @@ const  Map = ({
         src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NCP_CLIENT_ID}`}
         onReady={initializeMap}
       />
+      {/* 지도 그려질 영역 */}
       <div id={mapId}  style={{ width: '100%', height: '100%' }} />
     </>
   )

@@ -1,16 +1,24 @@
+"use client"
 import Header from '../components/Header'
 import MapSection from '../home/MapSection'
 import styles from '../styles/header.module.scss'
 import {AiOutlineShareAlt, VscFeedback} from 'react-icons/all'
 import Link from 'next/link'
-import { NextPage } from 'next'
 import {use} from 'react'
 import { Store } from '@/types/store'
+import useStores from '@/hooks/useStores'
+import { useEffect } from 'react'
 
 const Home = () => {
   const stores:Store[] = use(getMapApi());
-  console.log(stores[0].nid)
-  
+
+  const { initializeStores } = useStores();
+
+  useEffect(() => {
+    initializeStores(stores);
+  }, [initializeStores, stores]);
+
+
   return (
     <> 
     <Header
