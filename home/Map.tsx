@@ -43,6 +43,7 @@ const  Map = ({
 
     //지도가 이미 있는 경우 없애줌
     useEffect(() => {
+      console.log(initialCenter,initialZoom)
         return () => {
           mapRef.current?.destroy();
         };
