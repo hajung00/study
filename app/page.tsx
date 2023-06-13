@@ -1,10 +1,11 @@
 "use client"
-import HomeHeader from '@/home/Header'
-import MapSection from '../home/MapSection'
+import HomeHeader from '@/components/home/Header'
+import MapSection from '../components/home/MapSection'
 import {use} from 'react'
 import { Store } from '@/types/store'
 import useStores from '@/hooks/useStores'
 import { useEffect } from 'react'
+import DetailSection from '@/components/home/DetailSection'
 
 const Home = () => {
   const stores:Store[] = use(getMapApi());
@@ -21,6 +22,7 @@ const Home = () => {
     <HomeHeader/>
     <main style={{ width: '100%', height: '100%' }}>
       <MapSection/>
+      <DetailSection/>
     </main></>
   )
 }

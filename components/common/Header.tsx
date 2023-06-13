@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../styles/header.module.scss';
-import MapLogo from '../public/map-logo.png' 
+import styles from '../../styles/header.module.scss';
+import MapLogo from '../../public/map-logo.png' 
 
 interface Props {
   rightElements?: React.ReactElement[];
