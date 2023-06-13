@@ -10,6 +10,7 @@ import styles from '../../styles/detail.module.scss'
 
 //import types
 import { Store } from '@/types/store';
+import DetialContent from './DetialContent';
 
 const DetailSection = () => {
 
@@ -33,6 +34,7 @@ const DetailSection = () => {
             <p className={styles.title}>{currentStore.name}</p>
         }
       </div>
+      <DetialContent currentStore ={currentStore} expanded = {expanded}/>
     </div>
   );
 };

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStringMode: false,
   images: {
-    domains: ['lecture-1.vercel.app'],
+    domains: ['lecture-1.vercel.app', 'search.pstatic.net'],
   },
 };
 
