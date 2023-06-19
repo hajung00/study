@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Coordinates } from '../types/store';
-import { NaverMap } from '@/types/map';
+import { NaverMap } from '../types/map';
 import useSWR,{ mutate } from 'swr';
 
 export const INITIAL_CENTER: Coordinates = [37.5262411, 126.99289439];

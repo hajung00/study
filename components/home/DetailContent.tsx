@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { IoCallOutline, IoLocationOutline } from 'react-icons/io5';
 
 //import types
-import { Store } from '@/types/store'
+import { Store } from '../../types/store'
 
 //import styles
 import styles from '../../styles/detail.module.scss'
@@ -17,7 +17,8 @@ type Props = {
 }
 
 const DetialContent = ({currentStore, expanded}:Props)=> {
-    if(!currentStore) return null
+    
+  if(!currentStore) return null
     return (
         <div
         className={`${styles.detailContent} ${expanded ? styles.expanded : ''}`}

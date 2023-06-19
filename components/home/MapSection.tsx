@@ -1,10 +1,10 @@
 
 //import hooks
-import useMap, { INITIAL_CENTER, INITIAL_ZOOM } from '@/hooks/useMap';
-import useCurrentStore from '@/hooks/useCurrentStore';
+import useMap, { INITIAL_CENTER, INITIAL_ZOOM } from '../../hooks/useMap';
+import useCurrentStore from '../../hooks/useCurrentStore';
 
 //import types
-import { NaverMap } from '@/types/map'
+import { NaverMap } from '../../types/map'
 
 //import component
 import Map from './Map'

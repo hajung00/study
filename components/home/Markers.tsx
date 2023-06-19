@@ -2,14 +2,14 @@ import React from 'react';
 import useSWR from 'swr';
 
 //import hooks
-import { MAP_KEY } from '@/hooks/useMap';
-import { STORE_KEY } from '@/hooks/useStores';
-import useCurrentStore, { CURRENT_STORE_KEY } from '@/hooks/useCurrentStore';
+import { MAP_KEY } from '../../hooks/useMap';
+import { STORE_KEY } from '../../hooks/useStores';
+import useCurrentStore, { CURRENT_STORE_KEY } from '../../hooks/useCurrentStore';
 
 //import types
-import { NaverMap } from '@/types/map';
-import { Store } from '@/types/store';
-import { ImageIcon } from '@/types/map';
+import { NaverMap } from '../../types/map';
+import { Store } from '../../types/store';
+import { ImageIcon } from '../../types/map';
 
 //import conponent
 import Marker from './Marker'

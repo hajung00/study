@@ -3,14 +3,17 @@ import useSWR from 'swr';
 import { useState } from 'react';
 
 //import hooks
-import { CURRENT_STORE_KEY } from '@/hooks/useCurrentStore';
+import { CURRENT_STORE_KEY } from '../../hooks/useCurrentStore';
 
 //import style
 import styles from '../../styles/detail.module.scss'
 
 //import types
-import { Store } from '@/types/store';
-import DetialContent from './DetialContent';
+import { Store } from '../../types/store';
+
+//import components
+import DetailHeader from './DetailHeader';
+import DetailContent from './DetailContent';
 
 const DetailSection = () => {
 
@@ -21,20 +24,12 @@ const DetailSection = () => {
     <div className={`${styles.detailSection} 
     ${currentStore?styles.selected : ''} 
     ${expanded?styles.expanded : ''}`}>
-      <div className={styles.header}>
-        <button className={`${styles.arrowButton}  
-        ${expanded ? styles.expanded : ''}`} 
-        onClick={()=>setExpanded(!expanded)}
-        disabled={!currentStore}>
-          <IoIosArrowUp size={20} color="#666666" />
-        </button>
-        {
-            !currentStore?
-            <p className={styles.title}>매장을 선택해주세요</p>:
-            <p className={styles.title}>{currentStore.name}</p>
-        }
-      </div>
-      <DetialContent currentStore ={currentStore} expanded = {expanded}/>
+     <DetailHeader
+        currentStore={currentStore}
+        expanded={expanded}
+        onClickArrow={() => setExpanded(!expanded)}
+      />
+      <DetailContent currentStore ={currentStore} expanded = {expanded}/>
     </div>
   );
 };
