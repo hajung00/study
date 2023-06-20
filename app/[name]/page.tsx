@@ -6,22 +6,23 @@ import DetailHeader from '../../components/home/DetailHeader'
 import DetailContent from '../../components/home/DetailContent'
 import useCurrentStore from '../../hooks/useCurrentStore';
 
+
 interface Props {
   store: Store;
 }
 
 export default async function StoreDetail({ params }: Props  ) {
+  const {setCurrentStore} = useCurrentStore();
+  const router = useRouter();
+
   const stores = (await import('../../public/store.json')).default;
   const store = stores.find((store) => store.name === params?.name);
   
   const expanded = true
 
-  // const router = useRouter();
-  // const {setCurrentStore} = useCurrentStore();
   const goToMap = ()=>{
-    console.log(store)
-    // setCurrentStore(store);
-    // router.push(`/?zoom=15&lat=${store?.coordinates[0]}&lng=${store?.coordinates[1]}`)
+    setCurrentStore(store)
+    router.push(`/?zoom=15&lat=${store?.coordinates[0]}&lng=${store?.coordinates[1]}`)
   }
   return(
     <>
