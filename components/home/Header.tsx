@@ -1,9 +1,9 @@
-"use client" 
 
 import React, { useCallback } from 'react';
 import Link from 'next/link';
 import styles from '../../styles/header.module.scss';
-import {AiOutlineShareAlt, VscFeedback} from 'react-icons/all'
+import { AiOutlineShareAlt } from 'react-icons/ai';
+import { VscFeedback } from 'react-icons/vsc';
 import HeaderComponent from '../../components/common/Header';
 import useMap from '../../hooks/useMap';
 import { useRouter } from 'next/navigation';

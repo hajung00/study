@@ -1,4 +1,3 @@
-import { IoIosArrowUp } from 'react-icons/io';
 import useSWR from 'swr';
 import { useState } from 'react';
 
@@ -16,7 +15,6 @@ import DetailHeader from './DetailHeader';
 import DetailContent from './DetailContent';
 
 const DetailSection = () => {
-
     const {data:currentStore} = useSWR<Store>(CURRENT_STORE_KEY);
     const [expanded,setExpanded] = useState(false)
 

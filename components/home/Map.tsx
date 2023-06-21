@@ -1,4 +1,3 @@
-"use client";
 import React, {useEffect, useRef} from 'react';
 import Script from 'next/script';
 import { Coordinates } from '../../types/store';

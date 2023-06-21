@@ -4,7 +4,7 @@ import headerStyles from '../../styles/header.module.scss';
 
 //import icons
 import { IoIosArrowUp } from 'react-icons/io';
-import {AiOutlineShareAlt} from 'react-icons/all'
+import {AiOutlineShareAlt} from 'react-icons/ai'
 
 //import types
 import {Store} from '../../types/store'

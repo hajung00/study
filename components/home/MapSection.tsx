@@ -32,6 +32,7 @@ const  MapSection = () => {
  
 
   const onLoadMap = (map:NaverMap)=>{
+    console.log(map)
     initializeMap(map)
     naver.maps.Event.addListener(map,'click',cleartCurrentStore);
   }
