@@ -12,7 +12,7 @@ import {Store} from '../../types/store'
 import copy from 'copy-to-clipboard';
 
 interface Props{
-    currentStore:Store,
+    currentStore?:Store,
     expanded:boolean,
     onClickArrow:()=>void,
 

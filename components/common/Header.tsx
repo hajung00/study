@@ -22,7 +22,6 @@ const HeaderComponent = ({ rightElements }: Props) => {
             width={110}
             height={50}
             alt="map 로고"
-            priority
           />
         </Link>
       </div>

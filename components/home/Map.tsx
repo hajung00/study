@@ -8,7 +8,7 @@ import styles from '../../styles/map.module.scss';
 
 
 type Props = {
-    mapId:string;
+    mapId?:string;
     initialCenter?:Coordinates;
     initialZoom?: number;
     onLoad?: (map: NaverMap) => void;
@@ -45,7 +45,6 @@ const  Map = ({
 
     //지도가 이미 있는 경우 없애줌
     useEffect(() => {
-      console.log(initialCenter,initialZoom)
         return () => {
           mapRef.current?.destroy();
         };

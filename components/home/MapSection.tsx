@@ -10,29 +10,34 @@ import { NaverMap } from '../../types/map'
 import Map from './Map'
 import Markers from './Markers';
 import { useMemo } from 'react';
-import { useRouter,useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
+
+import type { Coordinates } from '../../types/store';
+
 
 const  MapSection = () => {
   //hooks로 map 전역에 저장
   const {initializeMap} = useMap();
   const {cleartCurrentStore} = useCurrentStore()
 
-  const router = useSearchParams();
-  const query = [router.get('zoom'),router.get('lat'),router.get('lng')]
-  
-  console.log(query)
- 
- const initialZoom = useMemo(()=>(
-  query[0]?Number(query[0]):INITIAL_ZOOM
- ),[query[0]])
+  const router = useRouter();
+  const query = useMemo(() => new URLSearchParams(router.asPath.slice(1)), []); // eslint-disable-line react-hooks/exhaustive-deps
+   
+  const initialZoom = useMemo(
+    () => (query.get('zoom') ? Number(query.get('zoom')) : INITIAL_ZOOM),
+    [query]
+  );
 
- const initialCenter = useMemo(()=>(
-  query[1]&&query[2]?[Number(query[1]),Number(query[2])]:INITIAL_CENTER
- ),[query[0]])
+  const initialCenter = useMemo<Coordinates>(
+    () =>
+      query.get('lat') && query.get('lng')
+        ? [Number(query.get('lat')), Number(query.get('lng'))]
+        : INITIAL_CENTER,
+    [query]
+  );
  
 
   const onLoadMap = (map:NaverMap)=>{
-    console.log(map)
     initializeMap(map)
     naver.maps.Event.addListener(map,'click',cleartCurrentStore);
   }

@@ -27,7 +27,6 @@ const  Markers = () => {
   if (!map || !stores) return null;
 
 
-  console.log(stores)
   return (
     <>
     {/* 가져온 stores를 마커로 표시하기 위해 Marker에 store정보 전달 */}

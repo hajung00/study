@@ -20,7 +20,7 @@ const useMap = ()=>{
 
     //center, zoom의 값으로 지도 이동
     const resetMapOptions = useCallback(()=>{
-        map.morph(new naver.maps.LatLng(...INITIAL_CENTER,INITIAL_ZOOM))
+        map.morph(new naver.maps.LatLng(...INITIAL_CENTER),INITIAL_ZOOM)
     },[map])
 
     //화면에서의 중심의 위도, 경도, zoom값 가져옴
