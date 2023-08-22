@@ -10,6 +10,7 @@
     "strict": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    // import A from ./../../../hello.js => import A from @src/hello.js
     "paths": {
       "@hooks/*": ["hooks/*"],
       "@components/*": ["components/*"],

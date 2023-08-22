@@ -71,3 +71,43 @@ Webpack 구조
 * entry : build의 대상이 될 파일
 * Plug-In : build 된 bundle 파일을 동적으로 특정 html 페이지에 추가 할 수 있으며 build 시에 javscript, css, html 등의 파일을 난독화 및 압축을 진행할 수 있다.
 ----------------------------------------------------------------
+
+2023-08-22
+Webpack 설정 후 실행
+- webpack은 ts를 인식 못하기 때문에 tsconfig에서 추가 설정 필요
+- ts-node 라이브러리를 통해 webpack이 ts실행
+ "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "Node",
+      "target": "es5",
+      "esModuleInterop": true
+    }
+  }
+- 실행 명령어: npx webpack
+
+4. 핫 리로딩(hot reloading)
+- 앱을 처음부터 다시 시작하지 않고 새로운 코드 변경에 따른 코드 변경사항만 표시하며 변경된 코드에만 적용된다. 
+- webpack의 핫 모듈을 통해서 핫 리로더 설정을 해서 사용
+
+* webpack-dev-server 사용
+- webpack-dev-server는 나중에 proxy서버 역할도 해줘서 CORS에러 해결도 해줌.
+npm i webpack-cli
+npm i -D @types/webpack-dev-server
+npm i @pmmm/react-refresh-webpack-plugin
+
+5. 코드 스플리팅(code splitting)
+- 코드에서 당장 사용하는 부분만을 로딩하고, 현재 필요하지 않은 코드 부분은 따로 분리시켜 나중에 로드함으로써 로딩시간을 개선하는 것
+
+코드 분리 기준
+- 페이지 단위
+- 서버 사이드 렌더링이 필요하지 않는 것
+
+* loadable__component 사용
+npm i @types/loadable__component
+
+* 사용 예시
+----------------------------------------------------------------
+사용 전: import LogIn from '파일 경로'
+사용 후: const LogIn = loadable(()=> import('파일 경로'))
+----------------------------------------------------------------
