@@ -1,28 +1,27 @@
 import React, { useCallback, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Header,Form,Label,Input,Button,Error, Success ,LinkContainer} from './styles'
+import useInput from '@hooks/useInput'
+import axios from 'axios'
 
 const SignUP = ()=> {
 
-    const [email, setEmail] = useState('')
-    const [nickname, setNickname] = useState('')
-    const [password,setPassword] = useState('')
-    const [passwordCheck,setPasswordCheck] = useState('')
+    const [email, onChangeEmail ] = useInput('')
+    const [nickname, onChangeNickname] = useInput('')
+    const [password,,setPassword] = useInput('')
+    const [passwordCheck,,setPasswordCheck] = useInput('')
     const [mismatchError,setMismatchError] = useState(false)
 
     const onSubmit = useCallback((e)=>{
         e.preventDefault();
-        console.log(email,nickname,password,passwordCheck)
+        if(!mismatchError && nickname){
+            console.log("회원가입 요청")
+            axios.post('http://localhost:3095/api/users',{
+                email, nickname, password
+            }).then((res)=>{console.log(res)})
+            .catch((err)=>{console.log(err.respons)})
+        }
     },[email,nickname,password,passwordCheck,mismatchError])
-
-    const onChangeEmail = useCallback((e)=>{
-    setEmail(e.target.value);
-    },[])
-
-    const onChangeNickname = useCallback((e)=>{
-    setNickname(e.target.value);
-    
-    },[])
 
     const onChangePassword = useCallback((e)=>{
     setPassword(e.target.value);
