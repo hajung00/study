@@ -111,3 +111,28 @@ npm i @types/loadable__component
 사용 전: import LogIn from '파일 경로'
 사용 후: const LogIn = loadable(()=> import('파일 경로'))
 ----------------------------------------------------------------
+
+2023-09-04
+6. CORS
+CORS(Cross Origin Resource Sharing):  웹 어플리케이션에서 다른 도메인의 리소스에 접근할 때 발생하는 보안 이슈를 해결하기 위한 표준 방법
+
+- 해결 방법
+1. 백앤드: 서버에서 Access-Control-Allow-Origin 헤더에 허용할 출처를 기재해서 클라이언트에 응답하면 되는 것
+[back/app.js] 
+ app.use(
+   cors({
+     origin: true,
+     credentials: true,
+     webSocket: true,
+   })
+ );
+2. 프론트: api로 보내는 요청은 주소를 3095인 것처럼 해서 보낸다.
+[client/webpack.config] 
+ proxy:{
+      '/api/':{
+        target:'http://localhost:3095',
+        changeOrigin:true,
+      }
+    }
+* webpack수정 후에 서버 재시작
+참고 자료: (https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-CORS-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95-%F0%9F%91%8F)
