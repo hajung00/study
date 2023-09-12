@@ -7,7 +7,7 @@ import { Link, Redirect } from 'react-router-dom';
 import useSWR from 'swr';
 
 const LogIn = () => {
-  const { data, error, revalidate } = useSWR('/api/users', fetcher, {
+  const { data, error, revalidate, mutate } = useSWR('/api/users', fetcher, {
     dedupingInterval: 100000,
   });
 
@@ -27,7 +27,7 @@ const LogIn = () => {
           },
         )
         .then((response) => {
-          revalidate();
+          mutate(response.data, false);
         })
         .catch((error) => {
           setLogInError(error.response?.status === 401);
