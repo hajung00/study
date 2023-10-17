@@ -5,7 +5,7 @@ import { ProfileModal } from '@layouts/Workspace/styles';
 interface Props {
   style: CSSProperties;
   show: boolean;
-  onCloseModal: () => void;
+  onCloseModal: (e: any) => void;
   closeButton?: boolean;
 }
 

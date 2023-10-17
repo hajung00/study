@@ -19,7 +19,7 @@ const SignUP = () => {
 
   const onSubmit = useCallback(
     (e) => {
-      e.preventDefault();
+      e.preventDefault(); // 새로고침 방지
       if (!mismatchError && nickname) {
         console.log('회원가입 요청');
         setSignUpSuccess(false);

@@ -16,7 +16,7 @@ const LogIn = () => {
   const [password, onChangePassword] = useInput('');
   const onSubmit = useCallback(
     (e) => {
-      e.preventDefault();
+      e.preventDefault(); // 새로고침 방지
       setLogInError(false);
       axios
         .post(
