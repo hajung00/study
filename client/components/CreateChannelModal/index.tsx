@@ -44,8 +44,8 @@ const CreateChannelModal: FC<Props> = ({ show, onCloseModal, setShowCreateChanne
           },
         )
         .then(() => {
-          setShowCreateChannelModal(false);
           revalidateChannel();
+          setShowCreateChannelModal(false);
           setNewChannel('');
         })
         .catch((error) => {

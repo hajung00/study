@@ -28,7 +28,9 @@ import Modal from '@components/Modal';
 import { Button, Input, Label } from '@pages/SignUp/styles';
 import useInput from '@hooks/useInput';
 import { toast } from 'react-toastify';
-import CreateChannelModal from '@components/CreateChannelModal/CreateChannelModal';
+import CreateChannelModal from '@components/CreateChannelModal';
+import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
+import InviteChannelModal from '@components/InviteChannelModal';
 
 const Channel = loadable(() => import('@pages/Channel'));
 const DirectMessage = loadable(() => import('@pages/DirectMessage'));
@@ -38,6 +40,9 @@ const Workspace: VFC = () => {
   const [showCreateWorkspaceModal, setShowCreateWorkspaceModal] = useState(false);
   const [showWorkspaceModal, setShowWorkspaceModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
+  const [showInviteWorkspaceModal, setShowInviteWorkspaceModal] = useState(false);
+  const [showInviteChannelModal, setShowInviteChannelModal] = useState(false);
+
   const [newWorkspace, onChangeNewWorkspace, setNewWorkspace] = useInput('');
   const [newUrl, onChangeNewUrl, setNewUrl] = useInput('');
 
@@ -116,6 +121,8 @@ const Workspace: VFC = () => {
   const onCloseModal = useCallback(() => {
     setShowCreateWorkspaceModal(false);
     setShowCreateChannelModal(false);
+    setShowInviteWorkspaceModal(false);
+    setShowInviteChannelModal(false);
   }, []);
 
   // workspace 이름 클릭 시, 채널만들기/로그아웃 모달 toggle
@@ -126,6 +133,11 @@ const Workspace: VFC = () => {
   // 채널 만들기 클릭 후 실행
   const onClickAddChannel = useCallback(() => {
     setShowCreateChannelModal(true);
+  }, []);
+
+  // workspace 초대하기 modal 오픈
+  const onClickInviteWorkspace = useCallback(() => {
+    setShowInviteWorkspaceModal(true);
   }, []);
 
   if (!userData) {
@@ -168,6 +180,7 @@ const Workspace: VFC = () => {
             <Menu show={showWorkspaceModal} onCloseModal={toggleWorkspaceModal} style={{ top: 95, left: 80 }}>
               <WorkspaceModal>
                 <h2>Sleact</h2>
+                <button onClick={onClickInviteWorkspace}>워크스페이스에 사용자 초대</button>
                 <button onClick={onClickAddChannel}>채널 만들기</button>
                 <button onClick={onLogout}>로그아웃</button>
               </WorkspaceModal>
@@ -199,6 +212,16 @@ const Workspace: VFC = () => {
             show={showCreateChannelModal}
             onCloseModal={onCloseModal}
             setShowCreateChannelModal={setShowCreateChannelModal}
+          />
+          <InviteWorkspaceModal
+            show={showInviteWorkspaceModal}
+            onCloseModal={onCloseModal}
+            setShowInviteWorkspaceModal={setShowInviteWorkspaceModal}
+          />
+          <InviteChannelModal
+            show={showInviteChannelModal}
+            onCloseModal={onCloseModal}
+            setShowInviteChannelModal={setShowInviteChannelModal}
           />
         </Chats>
       </WorkspaceWrapper>
