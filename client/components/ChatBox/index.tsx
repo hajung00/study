@@ -1,22 +1,50 @@
-import React, { VFC, useCallback } from 'react';
+import React, { VFC, useCallback, useEffect, useRef } from 'react';
 import { ChatArea, Form, MentionsTextarea, SendButton, Toolbox } from './styles';
+import autosize from 'autosize';
 
 interface Props {
   chat: string;
+  onChangeChat: (e: any) => void;
+  onSubmitForm: (e: any) => void;
+  placeholder?: string;
 }
-const ChatBox: VFC<Props> = ({ chat }) => {
-  const onSubmitForm = useCallback(() => {}, []);
+const ChatBox: VFC<Props> = ({ chat, onChangeChat, onSubmitForm, placeholder }) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    if (textareaRef.current) {
+      autosize(textareaRef.current);
+    }
+  }, []);
+
+  const onKeydownChat = useCallback(
+    (e) => {
+      if (e.key === 'Enter') {
+        if (!e.shiftKey) {
+          e.preventDefault();
+          onSubmitForm(e);
+        }
+      }
+    },
+    [onSubmitForm],
+  );
+
   return (
     <ChatArea>
       <Form onSubmit={onSubmitForm}>
-        <MentionsTextarea>
-          <textarea />
-        </MentionsTextarea>
+        <MentionsTextarea
+          id="edirtor-chat"
+          value={chat}
+          onChange={onChangeChat}
+          onKeyDown={onKeydownChat}
+          placeholder={placeholder}
+          ref={textareaRef}
+        />
         <Toolbox>
           <SendButton
             className={
-              'c-button-unstyled c-icon_button c-icon_button--light c-icon_button--size_medium c-texty_input__button c-texty_input__button--send' +
-              (chat?.trim() ? '' : ' c-texty_input__button--disabled')
+              'c-button-unstyled c-icon_button c-icon_button--size_small c-wysiwyg_container__button c-wysiwyg_container__button--send' +
+              (chat?.trim() ? '' : ' c-wysiwyg_container__button--disabled c-button--disabled ') +
+              ' c-icon_button--default'
             }
             data-qa="texty_send_button"
             aria-label="Send message"
@@ -24,7 +52,7 @@ const ChatBox: VFC<Props> = ({ chat }) => {
             type="submit"
             disabled={!chat?.trim()}
           >
-            <i className="c-icon c-icon--paperplane-filled" aria-hidden="true" />{' '}
+            <i className="c-icon c-icon--paperplane-filled" aria-hidden="true" />
           </SendButton>
         </Toolbox>
       </Form>
