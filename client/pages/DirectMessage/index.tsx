@@ -27,7 +27,7 @@ const DirectMessage = () => {
       e.preventDefault();
       if (chat?.trim()) {
         axios
-          .post(`/api/workspace/${workspace}/dms/${id}/chats`, {
+          .post(`/api/workspaces/${workspace}/dms/${id}/chats`, {
             content: chat,
           })
           .then(() => {
@@ -50,7 +50,7 @@ const DirectMessage = () => {
         <img src={gravatar.url(userData.email, { s: '24px', d: 'retro' })} alt={userData.email} />
         <span>{userData.nickname}</span>
       </Header>
-      <ChatList />
+      <ChatList chatData={chatData} />
       <ChatBox chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm} />
     </Container>
   );
