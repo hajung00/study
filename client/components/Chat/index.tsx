@@ -1,8 +1,10 @@
 import { IDM } from '@typings/db';
-import React, { VFC } from 'react';
+import React, { VFC, memo, useMemo } from 'react';
 import { ChatWrapper } from './styles';
 import gravatar from 'gravatar';
 import dayjs from 'dayjs';
+import regexifyString from 'regexify-string';
+import { Link, useParams } from 'react-router-dom';
 
 interface Props {
   data: IDM;
@@ -10,7 +12,29 @@ interface Props {
 
 const Chat: VFC<Props> = ({ data }) => {
   const user = data.Sender;
-  console.log(data);
+  const { workspace } = useParams<{ workspace: string }>();
+
+  // @[이름](숫자)랑 줄바꿈 정규표현식
+  const result = useMemo(
+    () =>
+      regexifyString({
+        input: data.content,
+        pattern: /@\[(.+?)]\((\d+?)\)|\n/g, // /d=>숫자, +=>1개 이상, ?=>0개나 1개, *=>0개 이상
+        decorator(match, index) {
+          const arr = match.match(/@\[(.+?)]\((\d+?)\)/)!;
+          if (arr) {
+            return (
+              <Link key={match + index} to={`/workspace/${workspace}/dm/${arr[2]}`}>
+                @{arr[1]}
+              </Link>
+            );
+          }
+          return <br key={index} />;
+        },
+      }),
+    [data.content],
+  );
+
   return (
     <ChatWrapper>
       <div className="chat-img">
@@ -21,10 +45,10 @@ const Chat: VFC<Props> = ({ data }) => {
           <b>{user.nickname}</b>
           <span>{dayjs(data.createdAt).format('h:mm A')}</span>
         </div>
-        <div>{data.content}</div>
+        <div>{result}</div>
       </div>
     </ChatWrapper>
   );
 };
 
-export default Chat;
+export default memo(Chat);
