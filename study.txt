@@ -372,3 +372,31 @@ io.connect(`${backUrl}-ws-${workspace}`);
 ex) sleact workspace -> test workspace 이동시, 
 소켓 연결을 해제하지 않으면 test workspace에서 sleact workspace의 채팅을 같이 받게 됨.
 
+2023-10-30
+12. useSWRInfinite
+- 채팅 위로 스크롤 시, 이전 채팅 기록을 불러와야한다.
+// DirectMessage
+  const {
+    data: chatData,
+    mutate: mutateChat,
+    revalidate,
+    setSize,
+  } = useSWRInfinite<IDM[]>(
+    (index) => `/api/workspaces/${workspace}/dms/${id}/chats?perPage=20&page=${index + 1}`,
+    fetcher,
+  );
+
+// ChatList
+    // 채팅을 위로 올렸을 때, 이전 채팅 가져오기
+  const onScroll = useCallback((values) => {
+    if (values.scrollTop === 0 && !isReachingEnd) {
+      setSize((prevSize) => prevSize + 1).then(() => {
+        //스크롤 위치 유지
+      });
+    }
+  }, []);
+
+- useSWRInfinite는 setSize로 페이지가 변경될 때, 다시 데이터를 불러와준다.
+
+- ref는 chatlist가 아닌 DirectMessage나 channelMessage에 둔다
+  * 스크롤이 되어 있는 상태여도 메세지를 보내고 나면 스크롤을 맨 아래로 내려줘야하기 때문이다.
