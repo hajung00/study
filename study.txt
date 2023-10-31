@@ -400,3 +400,63 @@ ex) sleact workspace -> test workspace 이동시,
 
 - ref는 chatlist가 아닌 DirectMessage나 channelMessage에 둔다
   * 스크롤이 되어 있는 상태여도 메세지를 보내고 나면 스크롤을 맨 아래로 내려줘야하기 때문이다.
+
+  2023-10-31
+  13. Optimistic UI 구현
+  - 채팅 post 성공 다음, 스크롤을 아래로 구현할 때, 딜레이 발생
+  (서버에 post가 성공하면 스크롤을 아래로 내리기 때문에)
+  - Optimistic ui로 구현하면 성공 전에 화면에 딜레이 없이 볼 수 있음.
+
+  [기존]
+  const onSubmitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (chat?.trim()) {
+        axios
+          .post(WWW`/api/workspaces/${workspace}/dms/${id}/chats`, {
+            content: chat,
+          })
+          .then(() => {
+            revalidate();
+            setChat('');
+            scrollbarRef.current?.scrollToBottom();
+          })
+          .catch(console.error);
+      }
+    },
+    [chat],
+  );
+
+  [Optimistic ui 적용]
+  const onSubmitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (chat?.trim() && chatData) {
+        const savedChat = chat;
+        mutateChat((prevChatData) => {
+          prevChatData?.[0].unshift({
+            id: (chatData[0][0]?.id || 0) + 1,
+            content: savedChat,
+            SenderId: myData.id,
+            Sender: myData,
+            ReceiverId: userData.id,
+            Receiver: userData,
+            createdAt: new Date(),
+          });
+          return prevChatData;
+        }).then(() => {
+          setChat('');
+          scrollbarRef.current?.scrollToBottom();
+        });
+        axios
+          .post(`/api/workspaces/${workspace}/dms/${id}/chats`, {
+            content: chat,
+          })
+          .then(() => {
+            revalidate();
+          })
+          .catch(console.error);
+      }
+    },
+    [chat, chatData, myData, userData, workspace, id],
+  );
