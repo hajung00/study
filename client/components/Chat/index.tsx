@@ -1,4 +1,4 @@
-import { IDM } from '@typings/db';
+import { IDM, IChat } from '@typings/db';
 import React, { VFC, memo, useMemo } from 'react';
 import { ChatWrapper } from './styles';
 import gravatar from 'gravatar';
@@ -7,11 +7,12 @@ import regexifyString from 'regexify-string';
 import { Link, useParams } from 'react-router-dom';
 
 interface Props {
-  data: IDM;
+  data: IDM | IChat;
 }
 
 const Chat: VFC<Props> = ({ data }) => {
-  const user = data.Sender;
+  // dm은 보내는사람과 받는 사람을 알아야 하지만 channel에서는 보내는 사람과 채널만 알면 된다.
+  const user = 'Sender' in data ? data.Sender : data.User;
   const { workspace } = useParams<{ workspace: string }>();
 
   // @[이름](숫자)랑 줄바꿈 정규표현식
