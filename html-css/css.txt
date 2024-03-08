@@ -1,0 +1,247 @@
+📒(2023-01-04)📒
+
+* 선택자
+1) id 선택자
+#id {
+	property: value
+}
+
+2) class 선택자
+.class {
+	property: value
+}
+
+3) 자손 선택자
+.parent .child {
+	property: value
+}
+
+4) 다중 선택자
+.class#id {
+	property: value
+}
+
+5) 전체 선택자
+* {
+	property: value
+}
+
+6) 그룹 선택자
+.class1, .class2 {
+	property: value
+}
+
+7) 가상 클래스 선택자
+- 실제로 html요소를 수정하지 않고, css만으로 가상 요소를 추가해 선택
+.선택자: 가상클래스 {
+	property: value
+}
+
+7-1. : first-child: 형제 요소 중 첫번째 요소를 선택하는 가상 클래스
+7-2. : last-child
+7-3. : nth-child(n)
+------------------------------------------------------------------------------------------------
++ 📒(2022-01-05)📒
+   7-4. :first-of-type: first-of-type이라는 가상 클래스가 적용된 선택자에 해당 되는 요소만 카운트 
+   7-5. :active: 활성화된 요소를 선택
+   7-6.: focus: focus를 받고 있는 입력 창 등의 요소를 선택
+   7-7.: visited: 사용자가 방문한 적 있는 링크를 선택
+
+8) 가상 요소 선택자
+- 실제로 html요소를 수정하지 않고, css만으로 가상 요소를 추가해 선택
+8-1) ::after
+8-2) ::before
+
+9) 형제 요소 선택자
+- A와 같은 부모를 가지고 있는 형제 요소들 중 B를 선택한다.
+A~B {
+	property: value
+}
+------------------------------------------------------------------------------------------------
+
+* font 기본 속성
+font-size: 글자 사이즈
+font-weight: 글자 두께
+font-style: 글자 기울임
+text-decoration: 밑줄, 취소선
+color: 글자 색
+
+*box model
+box: context->padding->border->margin
+
+box-sizing속성
+속성 값
+1) content-box: content 영역을 기준으로 box의 size를 적용 (기본 값)
+2) border-box: border 영역을 기준으로 box의 size를 적용
+ex) div{
+	width:200px;
+	height:200px;
+	padding:50px;
+}
+=> box-sizing의 속성값이 기본값 content-box이므로 실제의 width는 300px
+=> box-sizing을 border-box로 지정하면 width는 200px로 고정 후, padding적용
+
+*block, inline
+1) block
+- 여러개의 요소를 연속해 입력하면 자동으로 다음줄로 넘어감
+- 좌/우 양쪽으로 늘어나 부모 요소의 너비를 가득 채움
+
+2) inline
+- 여러개의 요소를 연속해 입력하면 자동으로 다음줄로 넘어가지 않음
+- 태그에 할당된 공간 만큼의 너비만 차지
+- width, height 등 박스의 규격을 지정하는 속성은 적용이 안됨(display로 block으로 변경하면 속성 지정 가능)
+
+📒(2022-01-05)📒
+
+* 레이아웃
+- css 레이아웃의 흐름
+1. Float -> 2. Flex -> 3. Grid
+
+1. Float
+- float: 특정한 컨테이너 좌우측을 감싸는 형태로 강제 배치할 때 사용
+- clear: float가 적용된 요소, 혹은 영향을 받고 있는 요소들에게 추가로 줄 수 있는 속성
+- 반응형 웹에 적합하지 않기 때문에 거의 사용하지 않음
+
+2. Flex
+- display가 적용된 요소: flex-container, 자식 요소: flex-item
+
+* flex-container
+속성1) flex-direction : row | column (정렬의 기준이 되는 방향)
+속성2) justify-content : 중심축 방향 정렬(중심축을 기준으로 item 정렬)
+	속성값: flex-start, flex-end, center, space-between, space-around, space-between, space-evenly
+속성3) align-items: 중심축 반대 방향 정렬 
+    (❗flex-item이 한줄 일때 우선 적용)
+	속성값: stretch, flex-start, flex-end
+속성4) flex-wrap: flex-item이 여러개일 때, item들의 줄바꿈을 허용할 것인지 말 것인지 결정
+속성5) align-content: flex-item이 두줄 이상 일때
+속성6) flex-flow: flex-direction과 flex-wrap을 합쳐놓은 단축 속성
+
+* flex-item
+속성1) order: item의 순서를 지정
+속성2) flex-basic: item의 기본 사이즈를 지정
+속성3) flex-shrink ..등등
+
+
+📒(2022-01-06)📒
+* 상속
+상속되는 속성: color, font-family, font-size
+상속되지 않는 속성: padding, margin, border
+
+* 웹폰트
+- 사용자가 로컬에 폰트를 직접 설치하지 않아도 특정 서버에 위치한 폰트를 다운받아 웹페이지에 표시
+- 웹폰트 적용 방법
+1. 폰트 파일을 직접 다운로드 받아서 적용하는 방법
+    - @font-face 이용
+2. 위부 서비스에서 제공하는 링크를 이용하는 방법
+    - @import 혹은 <link>이용
+
+* font
+- text-align: 블록요소나 표안에서 텍스트의 가로 정렬 방식 지정
+- vertical-align: 인라인 요소나 표안에서 텍스트의 세로 정렬 방식 지정
+- word-break: 텍스트가 콘텐츠 박스 영역 밖으로 넘쳤을 때, 어떻게 줄을 바꿀지 설정
+	1) keep-all: 어절을 기준으로 줄바꿈.
+	2) break-all: 음절을 기준으로 줄바꿈.
+- overflow-wrap: 단어가 콘텐츠 박스 영역 밖으로 넘쳤을때, 줄바꿈 여부 설정
+- text-overflow: 줄바꿈을 하지 않을 때, 요소 밖으로 넘치는 text를 어떻게 표기할 것인지 설정
+	선행조건
+	1. white-space:nowrap; 
+	2. overflow:hidden
+
+* 단위
+1. 절대단위
+ px: 화면을 구성하는 가장 기본이 되는 단위
+2. 상대단위
+ %: 부모 요소의 해당 속성 값에 비례하여 지정한 비율의 값을 적용
+ em: 스타일 지정 요소의 font-size 속성 값에 비례하여 값을 결정
+ rem: 최상위 html요소의 font-size 속성 값에 비례하여 값을 결정한다.
+ vw/vh: 요소의 규격을 viewport의 너비값과 높이 값에 비례하여 결정
+
+ * position
+- HTML요소가 배치되는 방식을 결정하는 속성
+- position의 속성 값에 따라 top/ left/ bottom/ right적용 달라짐
+- top/ left/ bottom/ right: 해당 방향 기준으로 요소의 좌표값을 변경
+
+*position 속성에 따른  top/ left/ bottom/ right
+1) static: top/ left/ bottom/ right 적용 불가
+2) relative: 원래 있던 자리를 기준으로 요소의 위치 조정 top/ left/ bottom/ right 적용 가능
+3) absolute: 절대 좌표를 기준으로 요소의 위치 조정  top/ left/ bottom/ right 적용 가능
+
+** relative와 absolute의 관계
+ex) index.html
+<div class='container'>
+  <div class='wrapper'>
+    <div class='content'></div>
+  </div>
+</div>;
+
+index.css
+.container{
+	position: relative;
+}
+.wrapper{
+	position: relative;
+}
+.content{	
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+=> content의 부모요소에 position이 기본값(static)일 경우, content는 viewport를 기준으로 top과 left를 조정
+=> content의 부모요소에 position이 relative일 경우, content의 부모요소를 기준으로 top과 left를 조정
+
+* transform
+속성값1) translate: 위치이동
+속성값2) scale: 크기 조정
+속성값3) skew: x,y 축 만큼 각도 이동
+속성값4) rotate: 각도만큼 회전
+
+
+* 애니메이션
+- 여러 이미지를 연결해서 자연스럽게 움직이는 것처럼 보이게 만드는 기법
+
+방법1. transition 속성 활
+- transition: property, duration, timing-function, delay
+- css속성을 이용한 전후 사이에 애니메이션을 추가해 부드럽게 만들어 줄 수 있음
+- 특정한 이벤트를 기점으로 작동(hover)
+
+📒(2022-01-07)📒
+
+방법2. animation속성과 keyframes 활용
+- transition: name, duration, timing-function, delay, iteration-count, direction
+- 시작하기 위한 이벤트가 필요 없음
+- 시작, 정지, 반복까지 제어 가능
+- @keyframes로 애니메이션 정의, 불러와서 제어
+* @keyframes: css 애니메이션의 시작, 중간, 끝 등의 중간상태를 정의
+ex) 
+@keyframes 애니메이션 이름{
+	// 애니메이션 시작 시점의 css
+	from{
+		left: 0;
+	}
+	// 애니메이션 종료 시점의 css
+	to{
+		left:200px;
+	}
+}
+
+* grid
+-  row, column 양방향 선택 가능 (flex: row, column 1방향 선택)
+
+* flex와 grid 차이점
+1. flex
+- 비교적 작은 단위의 레이아웃 구성에 적합
+- 작업 유동성이 높기 때문에, 디자인이나 기획이 확실하게 잡히지 않아 변경 가능성이 있는 경우
+2. grid
+- 큰 규모의 레이아웃 구성에 적합
+- 레이아웃 구조가 확실하게 잡혀있는 경우, 효율적으로 반응형 디자인을 구현할 수 있음
+
+* 반응형 웹
+-* 미디어 쿼리: viewport 너비에 따라 웹 사이트의 스타일 시트를 수정할 수 있음.
+ex)
+// 화면이 600px 이하일 경우 적용되는 스타일 지정
+@media screen and (max-width: 600px){
+	// 요소와 요소에 지정할 스타일 작성
+}
+
+- * breakpoint
+- 반응형 웹사이트 작업의 기준이 되는 중단점
