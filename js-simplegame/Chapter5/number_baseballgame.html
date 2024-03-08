@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>숫자야구</title>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text" id="input" />
+      <button>확인</button>
+    </form>
+    <div id="logs"></div>
+    <script>
+      const $input = document.querySelector('#input');
+      const $form = document.querySelector('#form');
+      const $logs = document.querySelector('#logs');
+
+      const numbers = [];
+      for (let n = 0; n < 9; n += 1) {
+        numbers.push(n + 1);
+      }
+
+      const answer = [];
+      for (let n = 0; n < 4; n += 1) {
+        const index = Math.floor(Math.random() * (9 - n));
+        answer.push(numbers[index]);
+        numbers.splice(index, 1);
+      }
+      console.log(answer);
+      const tries = []; //시도한 값
+      const checkInput = (input) => {
+        if (input.length !== 4) {
+          return alert('4자리 숫자를 입력해 주세요.');
+        }
+        if (new Set(input).size !== 4) {
+          return alert('중복되지 않게 입력해 주세요.');
+        }
+        if (tries.includes(input)) {
+          return alert('이미 시도한 값입니다.');
+        }
+        return true;
+      };
+
+      $form.addEventListener('submit', (event) => {
+        event.preventDefault(); // 기본 동작 막기
+        const value = $input.value;
+        $input.value = '';
+        if (!checkInput(value)) {
+          return;
+        }
+        //입력값 통과
+        if (answer.join('') === value) {
+          $logs.textContent = '홈런!';
+          return;
+        }
+        // 기회 10번 넘었을 때
+        if (tries.length >= 9) {
+          const message = document.createTextNode(
+            `패배! 정답은 ${answer.join('')} `
+          );
+          $logs.appendChild(message);
+          return;
+        }
+        // 스트라이크, 볼 계산
+        let strike = 0;
+        let ball = 0;
+
+        for (let n = 0; n < answer.length; n += 1) {
+          const index = value.indexOf(answer[n]); //value에 answer[n]의 값이 없으면 -1return
+          if (index > -1) {
+            if (index === n) strike++;
+            else ball++;
+          }
+        }
+        $logs.append(
+          `${value}: ${strike}스트라이크 ${ball}볼`,
+          document.createElement('br')
+        );
+
+        tries.push(value);
+      });
+    </script>
+  </body>
+</html>
